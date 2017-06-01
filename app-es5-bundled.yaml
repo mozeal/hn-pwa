@@ -1,0 +1,46 @@
+application: hn-pwa
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /bower_components
+  static_dir: build/es5-bundled/bower_components
+  secure: always
+
+- url: /images
+  static_dir: build/es5-bundled/images
+  secure: always
+
+- url: /src
+  static_dir: build/es5-bundled/src
+  secure: always
+
+- url: /push-manifest.json
+  static_files: build/es5-bundled/push-manifest.json
+  upload: build/es5-bundled/push-manifest.json
+  secure: always
+
+- url: /service-worker.js
+  static_files: build/es5-bundled/service-worker.js
+  upload: build/es5-bundled/service-worker.js
+  secure: always
+
+- url: /manifest.json
+  static_files: build/es5-bundled/manifest.json
+  upload: build/es5-bundled/manifest.json
+  secure: always
+
+- url: /.*
+  static_files: build/es5-bundled/index.html
+  upload: build/es5-bundled/index.html
+  secure: always
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
