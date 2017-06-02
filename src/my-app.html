@@ -23,6 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="hn-news.html">
 <link rel="import" href="my-view1.html">
 <link rel="import" href="my-icons.html">
+<link rel="import" href="google-analytics.html">
 
 <link rel="lazy-import" href="my-view2.html">
 <link rel="lazy-import" href="my-view3.html">
@@ -69,8 +70,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 color: black;
                 font-weight: bold;
             }
-        </style>
 
+            .adv-box {
+                width: 100%;
+                text-align: center;
+                font-size: small;
+            }
+
+            a {
+                display: block;
+                position: relative;
+                text-decoration: none;
+                color: inherit;
+                overflow: hidden;
+            }
+
+            .drawer-list a:focus {
+                outline: 0;
+            }
+        </style>
+        <google-analytics key="UA-100401242-1"></google-analytics>
         <app-location route="{{route}}"></app-location>
         <app-route
                 route="{{route}}"
@@ -89,6 +108,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <a name="view4" href="Ask">Ask</a>
                     <a name="view5" href="Jobs">Jobs</a>
                 </iron-selector>
+                <a href="https://pwa.online.hackathon.in.th/en">
+                <div class="adv-box">
+                    <img style="max-width: 70%;" src="/images/pwa-hackathon-logo.png">
+                    <p>Thailand PWA Online Hackathon<br>June 23-25, 2017</p>
+                </div>
+                </a>
             </app-drawer>
 
             <!-- Main content -->
