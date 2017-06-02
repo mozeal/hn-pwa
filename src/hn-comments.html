@@ -2,7 +2,7 @@
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="hn-item.html">
 
-<dom-module id="hn-news">
+<dom-module id="hn-comments">
     <template>
         <style>
             :host {
@@ -11,17 +11,10 @@
             }
         </style>
 
-        <div class="card">
-            <h2>[[title]]</h2>
-            <dom-repeat items="[[data]]" initial-count="30">
-                <template>
-                    <hn-item index="[[index]]" item="[[item]]" data_type="[[data_type]]"></hn-item>
-                </template>
-            </dom-repeat>
-        </div>
+        <hn-item index="[[index]]" item="[[item]]" data_type="[[data_type]]"></hn-item>
         <iron-ajax
             auto
-            url="https://api.hackerwebapp.com/[[data_type]]?page=[[page_no]]"
+            url="https://node-hnapi.herokuapp.com/item/[[item.id]]"
             handle-as="json"
             on-response="_handleResponse"
             debounce-duration="300">
@@ -29,19 +22,15 @@
     </template>
 
     <script>
-        class HackerNews extends Polymer.Element {
+        class HackerNewsComments extends Polymer.Element {
             static get is() {
-                return 'hn-news';
+                return 'hn-comments';
             }
 
             static get properties() {
                 return {
                     data_type: String,
-                    title: String,
-                    page_no: {
-                        type: Number,
-                        value: 1
-                    }
+                    item: Object
                 };
             }
 
@@ -51,7 +40,7 @@
 
         }
 
-        window.customElements.define(HackerNews.is, HackerNews);
+        window.customElements.define(HackerNewsComments.is, HackerNewsComments);
     </script>
 </dom-module>
 

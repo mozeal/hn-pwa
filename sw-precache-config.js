@@ -13,15 +13,17 @@
 module.exports = {
     staticFileGlobs: [
         '/index.html',
+        '/favicon.ico',
         '/manifest.json',
         '/images/*',
         '/bower_components/webcomponentsjs/*',
+        'https://api.hackerwebapp.com/*'
     ],
     navigateFallback: 'index.html',
     navigateFallbackWhitelist: [/^(?!.*\.html$|\/data\/).*/],
     runtimeCaching: [
         {
-            urlPattern: /.*\.(png|jpg|gif|svg)/i,
+            urlPattern: /.*\.(png|jpg|gif|svg|ico)/i,
             handler: 'fastest',
             options: {
                 cache: {
