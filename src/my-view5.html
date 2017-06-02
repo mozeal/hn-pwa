@@ -12,23 +12,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="hn-news.html">
 
 <dom-module id="my-view5">
-  <template>
-    <style>
-      :host {
-        display: block;
+    <template>
+        <style>
+            :host {
+                display: block;
 
-        padding: 10px;
-      }
-    </style>
+                padding: 10px;
+            }
+        </style>
 
-    <hn-news></hn-news>
-  </template>
+        <hn-news data_type="jobs" title="Jobs"></hn-news>
+    </template>
 
-  <script>
-    class MyView5 extends Polymer.Element {
-      static get is() { return 'my-view5'; }
-    }
+    <script>
+        class MyView5 extends Polymer.Element {
+            static get is() {
+                return 'my-view5';
+            }
+        }
 
-    window.customElements.define(MyView5.is, MyView5);
-  </script>
+        window.customElements.define(MyView5.is, MyView5);
+    </script>
 </dom-module>

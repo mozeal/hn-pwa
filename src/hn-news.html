@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="hn-news">
     <template>
@@ -10,18 +11,49 @@
         </style>
 
         <div class="card">
-            <h1>Hacker News</h1>
-            <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-            <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit
-                amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo
-                eripuit sit.</p>
+            <h1>[[title]]</h1>
+            <dom-repeat items="[[data]]" initial-count="30">
+                <template>
+                    <div>
+                        <a href$="#">
+                            <p>[[_displayIndex(index)]]. [[item.title]]</p>
+                        </a>
+                    </div>
+                </template>
+            </dom-repeat>
         </div>
+        <iron-ajax
+            auto
+            url="https://api.hackerwebapp.com/[[data_type]]"
+            params='{"page":"[[page_no"}'
+            handle-as="json"
+            on-response="_handleResponse"
+            debounce-duration="300">
+        </iron-ajax>
     </template>
 
     <script>
         class HackerNews extends Polymer.Element {
             static get is() {
                 return 'hn-news';
+            }
+
+            static get properties() {
+                return {
+                    data_type: String,
+                    title: String,
+                    page_no: {
+                        type: Number,
+                        value: 1
+                    }
+                };
+            }
+
+            _handleResponse( data ) {
+                this.data = data.detail.response;
+            }
+            _displayIndex( index ) {
+                return index + 1;
             }
         }
 
