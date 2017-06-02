@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="hn-comments.html">
 
 <dom-module id="my-view6">
     <template>
@@ -20,13 +21,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
         </style>
 
-        <h2>Comments</h2>
+        <hn-comments item_id="[[item_id]]"></hn-comments>
     </template>
 
     <script>
         class MyView6 extends Polymer.Element {
             static get is() {
                 return 'my-view6';
+            }
+            static get properties() {
+                return {
+                    item_id: {
+                        type: Object,
+                        observer: '_itemIDChanged',
+                    }
+                };
+            }
+            _itemIDChanged( itemID ) {
+                console.log( "view6: " + itemID );
             }
         }
 

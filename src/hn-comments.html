@@ -9,15 +9,31 @@
                 display: block;
                 padding: 0 15px 0 15px;
             }
-        </style>
 
-        <hn-item index="[[index]]" item="[[item]]" data_type="[[data_type]]"></hn-item>
+            .info {
+                font-size: xx-small;
+            }
+
+            .item {
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+        </style>
+        <div id="comment">
+            <h2>Comments</h2>
+            <div class="item">
+                <div>[[item.title]]</div>
+                <div class="info">[[item.points]] points by [[item.user]]
+                    [[item.time_ago]] | [[item.comments_count]] comments
+                </div>
+            </div>
+        </div>
         <iron-ajax
-            auto
-            url="https://node-hnapi.herokuapp.com/item/[[item.id]]"
-            handle-as="json"
-            on-response="_handleResponse"
-            debounce-duration="300">
+                auto
+                url="https://node-hnapi.herokuapp.com/item/[[item_id]]"
+                handle-as="json"
+                on-response="_handleResponse"
+                debounce-duration="300">
         </iron-ajax>
     </template>
 
@@ -29,15 +45,22 @@
 
             static get properties() {
                 return {
-                    data_type: String,
-                    item: Object
+                    item_id: {
+                        type: Object,
+                        observer: '_itemIDChanged',
+                    }
                 };
             }
 
-            _handleResponse( data ) {
-                this.data = data.detail.response;
+            _handleResponse(data) {
+                this.item = data.detail.response;
+                this.$.comment.hidden = false;
+                console.log(this.item.comments);
             }
 
+            _itemIDChanged(itemID) {
+                this.$.comment.hidden = true;
+            }
         }
 
         window.customElements.define(HackerNewsComments.is, HackerNewsComments);
