@@ -152,6 +152,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.rootPattern = (new URL(this.rootPath)).pathname;
             }
 
+            connectedCallback() {
+                super.connectedCallback();
+                console.log(this.localName + ' was attached (called after first render).');
+            }
+
+
             _routePageChanged(page) {
                 // Polymer 2.0 will call with `undefined` on initialization.
                 // Ignore until we are properly called with a string.
