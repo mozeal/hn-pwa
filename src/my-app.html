@@ -96,10 +96,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
         </style>
 
-        <app-location route="{{route}}"></app-location>
+        <app-location
+            url-space-regex="^/list/"
+            route="{{route}}">
+
+        </app-location>
         <app-route
                 route="{{route}}"
-                pattern="[[rootPattern]]:page"
+                pattern="/list/:page"
                 data="{{routeData}}"
                 tail="{{subroute}}">
         </app-route>
@@ -115,11 +119,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <app-drawer id="drawer" slot="drawer">
                 <app-toolbar>Menu</app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-                    <a name="view1" href="TopStories">Top Stories</a>
-                    <a name="view2" href="New">New</a>
-                    <a name="view3" href="Show">Show</a>
-                    <a name="view4" href="Ask">Ask</a>
-                    <a name="view5" href="Jobs">Jobs</a>
+                    <a name="view1" href="/list/TopStories">Top Stories</a>
+                    <a name="view2" href="/list/New">New</a>
+                    <a name="view3" href="/list/Show">Show</a>
+                    <a name="view4" href="/list/Ask">Ask</a>
+                    <a name="view5" href="/list/Jobs">Jobs</a>
                 </iron-selector>
                 <a href="https://pwa.online.hackathon.in.th/en">
                 <div class="adv-box">
@@ -197,8 +201,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             _routePageChanged(page) {
                 // Polymer 2.0 will call with `undefined` on initialization.
                 // Ignore until we are properly called with a string.
+                console.log( page );
                 if (page === undefined) {
-                    return;
+
                 }
 
                 // If no page was found in the route data, page will be an empty string.

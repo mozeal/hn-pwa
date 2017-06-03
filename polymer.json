@@ -39,6 +39,7 @@
       "js": { "minify": false },
       "css": { "minify": false },
       "html": { "minify": false },
+      "addServiceWorker": true,
       "addServiceWorker": true
     },
     {
