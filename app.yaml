@@ -1,8 +1,13 @@
 application: hn-pwa
-version: 1
+version: 3
 runtime: python27
 api_version: 1
 threadsafe: yes
+automatic_scaling:
+  min_idle_instances: 5
+  max_idle_instances: automatic
+  min_pending_latency: 30ms
+  max_pending_latency: automatic
 
 handlers:
 - url: /favicon\.ico

@@ -7,11 +7,12 @@
     "src/my-view3.html",
     "src/my-view4.html",
     "src/my-view5.html",
+    "src/my-view6.html",
     "src/my-view404.html"
   ],
   "sources": [
     "src/**/*",
-    "images/*",
+    "images/**/*",
     "bower.json"
   ],
   "extraDependencies": [
@@ -27,28 +28,17 @@
     {
       "name": "bundled",
       "bundle": true,
-      "js": {
-        "minify": true
-      },
-      "css": {
-        "minify": true
-      },
-      "html": {
-        "minify": true
-      },
-      "addServiceWorker": true
+      "js": { "minify": true},
+      "css": { "minify": true },
+      "html": { "minify": true },
+      "addServiceWorker": true,
+      "addPushManifest": true
     },
     {
       "name": "unbundled",
-      "js": {
-        "minify": false
-      },
-      "css": {
-        "minify": false
-      },
-      "html": {
-        "minify": false
-      },
+      "js": { "minify": false },
+      "css": { "minify": false },
+      "html": { "minify": false },
       "addServiceWorker": true
     },
     {

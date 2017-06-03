@@ -9,13 +9,15 @@
  */
 
 /* eslint-env node */
+const path = 'https://api.hackerwebapp.com';
 
 module.exports = {
     staticFileGlobs: [
         '/index.html',
         '/favicon.ico',
         '/manifest.json',
-        '/images/*',
+        '/bower_components/webcomponentsjs/webcomponents*.js',
+        '/bower_components/webcomponentsjs/custom-elements-es5-adapter.js'
     ],
     navigateFallback: 'index.html',
     navigateFallbackWhitelist: [/^(?!.*\.html$|\/data\/).*/],
@@ -31,12 +33,21 @@ module.exports = {
             }
         },
         {
-            urlPattern: /https:\/\/api.hackerwebapp.com\/*/,
-            handler: 'fastest',
+            urlPattern: new RegExp(`${path}/(news|newest|ask|show|jobs)`),
+            handler: 'networkFirst',
             options: {
                 cache: {
-                    maxEntries: 50,
-                    name: 'data-hn-cache'
+                    maxEntries: 30,
+                    name: 'articles-cache'
+                }
+            }
+        }, {
+            urlPattern: new RegExp(`${path}/item/`),
+            handler: 'networkFirst',
+            options: {
+                cache: {
+                    maxEntries: 30,
+                    name: 'comments-cache'
                 }
             }
         }
