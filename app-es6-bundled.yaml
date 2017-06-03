@@ -8,6 +8,7 @@ handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
+  expiration: 45d
 
 - url: /bower_components
   static_dir: build/es6-bundled/bower_components
@@ -16,6 +17,7 @@ handlers:
 - url: /images
   static_dir: build/es6-bundled/images
   secure: always
+  expiration: 45d
 
 - url: /src
   static_dir: build/es6-bundled/src
@@ -35,6 +37,7 @@ handlers:
   static_files: build/es6-bundled/manifest.json
   upload: build/es6-bundled/manifest.json
   secure: always
+  expiration: 45d
 
 - url: /.*
   static_files: build/es6-bundled/index.html

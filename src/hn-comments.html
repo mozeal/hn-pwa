@@ -1,6 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="hn-item.html">
+<link rel="import" href="hn-comment-item.html">
 
 <dom-module id="hn-comments">
     <template>
@@ -15,17 +16,27 @@
             }
 
             .item {
-                margin-left: 0px;
-                margin-right: 0px;
+                margin: 0 0 15px 0;
             }
         </style>
+        <h2>Comments</h2>
+        <div id="loading">
+            Loading...
+        </div>
         <div id="comment">
-            <h2>Comments</h2>
             <div class="item">
                 <div>[[item.title]]</div>
                 <div class="info">[[item.points]] points by [[item.user]]
                     [[item.time_ago]] | [[item.comments_count]] comments
                 </div>
+            </div>
+
+            <div class="comments">
+                <dom-repeat items="[[item.comments]]" initial-count="30">
+                    <template>
+                        <hn-comment-item comment="[[item]]"></hn-comment-item>
+                    </template>
+                </dom-repeat>
             </div>
         </div>
         <iron-ajax
@@ -33,6 +44,7 @@
                 url="https://node-hnapi.herokuapp.com/item/[[item_id]]"
                 handle-as="json"
                 on-response="_handleResponse"
+                on-error="_handleError"
                 debounce-duration="300">
         </iron-ajax>
     </template>
@@ -55,12 +67,21 @@
             _handleResponse(data) {
                 this.item = data.detail.response;
                 this.$.comment.hidden = false;
-                console.log(this.item.comments);
+                this.$.loading.hidden = true;
             }
 
             _itemIDChanged(itemID) {
                 this.$.comment.hidden = true;
+                this.$.loading.hidden = false;
+                this.$.loading.innerHTML="Loading...";
             }
+
+            _handleError( data ) {
+                console.log( "ERROR" );
+                console.log( data );
+                this.$.loading.innerHTML="(Network ERROR)";
+            }
+
         }
 
         window.customElements.define(HackerNewsComments.is, HackerNewsComments);

@@ -16,8 +16,6 @@ module.exports = {
         '/favicon.ico',
         '/manifest.json',
         '/images/*',
-        '/bower_components/webcomponentsjs/*',
-        'https://api.hackerwebapp.com/*'
     ],
     navigateFallback: 'index.html',
     navigateFallbackWhitelist: [/^(?!.*\.html$|\/data\/).*/],
@@ -29,6 +27,16 @@ module.exports = {
                 cache: {
                     maxEntries: 200,
                     name: 'data-images-cache'
+                }
+            }
+        },
+        {
+            urlPattern: /https:\/\/api.hackerwebapp.com\/*/,
+            handler: 'fastest',
+            options: {
+                cache: {
+                    maxEntries: 50,
+                    name: 'data-hn-cache'
                 }
             }
         }
