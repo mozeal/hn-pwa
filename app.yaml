@@ -16,37 +16,37 @@ handlers:
   expiration: 45d
 
 - url: /bower_components
-  static_dir: build/es6-unbundled/bower_components
+  static_dir: build/es6-bundled/bower_components
   secure: always
 
 - url: /images
-  static_dir: build/es6-unbundled/images
+  static_dir: build/es6-bundled/images
   secure: always
   expiration: 45d
 
 - url: /src
-  static_dir: build/es6-unbundled/src
+  static_dir: build/es6-bundled/src
   secure: always
 
 - url: /push-manifest.json
-  static_files: build/es6-unbundled/push-manifest.json
-  upload: build/es6-unbundled/push-manifest.json
+  static_files: build/es6-bundled/push-manifest.json
+  upload: build/es6-bundled/push-manifest.json
   secure: always
 
 - url: /service-worker.js
-  static_files: build/es6-unbundled/service-worker.js
-  upload: build/es6-unbundled/service-worker.js
+  static_files: build/es6-bundled/service-worker.js
+  upload: build/es6-bundled/service-worker.js
   secure: always
 
 - url: /manifest.json
-  static_files: build/es6-unbundled/manifest.json
-  upload: build/es6-unbundled/manifest.json
+  static_files: build/es6-bundled/manifest.json
+  upload: build/es6-bundled/manifest.json
   secure: always
   expiration: 45d
 
 - url: /.*
-  static_files: build/es6-unbundled/index.html
-  upload: build/es6-unbundled/index.html
+  static_files: build/es6-bundled/index.html
+  upload: build/es6-bundled/index.html
   secure: always
 
 libraries:

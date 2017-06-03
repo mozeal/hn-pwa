@@ -40,7 +40,7 @@
       "css": { "minify": false },
       "html": { "minify": false },
       "addServiceWorker": true,
-      "addServiceWorker": true
+      "addPushManifest": true
     },
     {
       "preset": "es5-bundled",
