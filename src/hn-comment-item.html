@@ -8,7 +8,8 @@
                 font-size: small;
             }
             #layout {
-                margin-bottom: 30px;
+                margin-top: 20px;
+                margin-bottom: 20px;
             }
             .info {
                 font-size: x-small;
@@ -24,6 +25,12 @@
         <div id="layout">
             <div class="info">[[comment.user]] [[comment.time_ago]]</div>
             <div id="comment"></div>
+
+            <dom-repeat items="[[comment.comments]]" initial-count="30">
+                <template>
+                    <hn-comment-item comment="[[item]]"></hn-comment-item>
+                </template>
+            </dom-repeat>
         </div>
 
     </template>
@@ -45,7 +52,7 @@
             _commentChanged( comment ) {
                 console.log( comment );
                 this.$.comment.innerHTML=comment.content;
-                this.$.layout.style['margin-left'] = '15px';
+                this.$.layout.style['margin-left'] = '30px';
             }
         }
 
