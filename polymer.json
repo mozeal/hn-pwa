@@ -8,12 +8,14 @@
     "src/my-view4.html",
     "src/my-view5.html",
     "src/my-view6.html",
+    "src/my-view7.html",
     "src/my-view404.html"
   ],
   "sources": [
     "src/**/*",
     "images/**/*",
-    "bower.json"
+    "bower.json",
+    "favicon.ico"
   ],
   "extraDependencies": [
     "manifest.json",

@@ -16,22 +16,13 @@ module.exports = {
         '/index.html',
         '/favicon.ico',
         '/manifest.json',
+        '/images/*',
         '/bower_components/webcomponentsjs/webcomponents*.js',
         '/bower_components/webcomponentsjs/custom-elements-es5-adapter.js'
     ],
     navigateFallback: 'index.html',
     navigateFallbackWhitelist: [/^(?!.*\.html$|\/data\/).*/],
     runtimeCaching: [
-        {
-            urlPattern: /.*\.(png|jpg|gif|svg|ico)/i,
-            handler: 'fastest',
-            options: {
-                cache: {
-                    maxEntries: 200,
-                    name: 'data-images-cache'
-                }
-            }
-        },
         {
             urlPattern: new RegExp(`${path}/(news|newest|ask|show|jobs)`),
             handler: 'networkFirst',

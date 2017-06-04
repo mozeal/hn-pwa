@@ -30,6 +30,8 @@
                     [[item.time_ago]] | [[item.comments_count]] comments
                 </div>
             </div>
+            <div id="item_content">
+            </div>
 
             <div class="comments">
                 <dom-repeat items="[[item.comments]]" initial-count="30">
@@ -41,7 +43,7 @@
         </div>
         <iron-ajax
                 auto
-                url="https://node-hnapi.herokuapp.com/item/[[item_id]]"
+                url="https://api.hackerwebapp.com/item/[[item_id]]"
                 handle-as="json"
                 on-response="_handleResponse"
                 on-error="_handleError"
@@ -67,13 +69,19 @@
             _handleResponse(data) {
                 this.item = data.detail.response;
                 this.$.comment.hidden = false;
+                this.$.item_content.hidden = false;
                 this.$.loading.hidden = true;
+                console.log( this.item );
+                if( this.item.content )
+                    this.$.item_content.innerHTML = this.item.content;
             }
 
             _itemIDChanged(itemID) {
                 this.$.comment.hidden = true;
+                this.$.item_content.hidden = true;
                 this.$.loading.hidden = false;
                 this.$.loading.innerHTML="Loading...";
+                this.$.item_content.innerHTML = "";
             }
 
             _handleError( data ) {

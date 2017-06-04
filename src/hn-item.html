@@ -36,7 +36,7 @@
             }
         </style>
 
-        <a class="a2" href="[[item.url]]">
+        <a class="a2" href="[[_getItemURL()]]">
         <div class="layout">
             <div class="num">[[_displayIndex(index)]].</div>
             <div class="item">
@@ -73,6 +73,17 @@
                 if( this.data_type == 'jobs' ) {
                     this.$.info.hidden = true;
                 }
+            }
+
+            _getItemURL() {
+                if( this.data_type === "ask" ) {
+                    return "/list/Comment/"+this.item.id;
+                }
+
+                if( this.item.url.startsWith( 'item?id=' ) ) {
+                    return "/list/Item/" + this.item.url.substring(8);
+                }
+                return this.item.url;
             }
         }
 
